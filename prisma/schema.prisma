@@ -8,18 +8,18 @@ datasource db {
 }
 
 model Question {
-  id     Int      @id @default(autoincrement())
-  text   String
-  answer Answer[]
+  id        Int      @id @default(autoincrement())
+  question  String
+  answers   Answer[]
 
   @@map("questions")
 }
 
 model Answer {
-  id         Int      @id @default(autoincrement())
-  text       String
-  questionId Int
-  qustion    Question @relation(fields: [questionId], references: [id])
+  id          Int      @id @default(autoincrement())
+  answer      String
+  questionId  Int
+  question    Question @relation(fields: [questionId], references: [id])
 
   @@map("answers")
 }

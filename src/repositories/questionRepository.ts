@@ -1,17 +1,16 @@
 import { prisma } from "../config/database.js";
+import { CreateQuestionData } from "../services/questionService.js";
 
-async function insertQuestion(text: string) {
+async function insertQuestion(question: CreateQuestionData) {
     return await prisma.question.create({
-        data: {
-            text
-        }
+        data: question
     });
 }
 
 async function getQuestions() {
     return await prisma.question.findMany({
         include: {
-            "answer": true
+            "answers": true
         }
     });
 }
@@ -22,7 +21,7 @@ async function getQuestionById(questionId: number) {
             id: questionId
         },
         include: {
-            "answer": true
+            "answers": true
         }
     })
 }

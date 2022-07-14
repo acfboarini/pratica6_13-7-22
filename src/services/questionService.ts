@@ -1,8 +1,6 @@
-// TODO
-export interface CreateQuestionData {
-    id: number;
-    question: string
-}
+import { Question } from "@prisma/client";
+
+export type CreateQuestionData = Omit<Question, "id">;
 
 const questionService = {};
 export default questionService;

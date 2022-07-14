@@ -1,6 +1,6 @@
 import { Router } from "express";
 import {create, answer, get, getById} from "../controllers/questionController.js";
-import { validateSchemaMiddleware } from "./../middlewares/validateSchema.js";
+import { validateSchemaMiddleware } from "../middlewares/validateSchema.js";
 import { answerSchema } from "../schemas/answerSchema.js";
 import { questionSchema } from "../schemas/questionSchema.js";
 

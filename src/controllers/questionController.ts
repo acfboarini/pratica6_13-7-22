@@ -6,10 +6,8 @@ import questionService  from "../services/questionService.js";
 
 export async function create(req: Request, res: Response) {
 
-  const { question } = req.body;
-
   try {
-    const result = await questionRepository.insertQuestion(question);
+    const result = await questionRepository.insertQuestion(req.body);
     return res.status(200).send(result);
 
   } catch (error) {
@@ -20,11 +18,13 @@ export async function create(req: Request, res: Response) {
 
 export async function answer(req: Request, res: Response) {
 
-  const { id: questionId } = req.params;
-  const { answer } = req.body;
+  const answer = {
+    questionId: parseInt(req.params.id),
+    answer: req.body.answer
+  }
 
   try {
-    const result = await answerRepository.insertAnswer(Number(questionId), answer);
+    const result = await answerRepository.insertAnswer(answer);
     return res.status(200).send(result);
     
   } catch (error) {
@@ -50,7 +50,7 @@ export async function getById(req: Request, res: Response) {
   const {id: questionId } = req.params; 
 
   try {
-    const question = await questionRepository.getQuestionById(Number(questionId));
+    const question = await questionRepository.getQuestionById(parseInt(questionId));
     return res.status(200).send(question);
 
   } catch (error) {

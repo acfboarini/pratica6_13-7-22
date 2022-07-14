@@ -3,7 +3,7 @@ import "express-async-errors";
 import dotenv from "dotenv";
 
 import { errorHandlerMiddleware } from "./middlewares/errorMiddleware.js";
-import router from "./routes/index.js";
+import router from "./routers/index.js";
 
 dotenv.config();
 
